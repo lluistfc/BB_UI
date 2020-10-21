@@ -19,7 +19,7 @@ function deepcopy(orig, copies)
     return copy
 end
 
-BuildBBFrame = function (config, originalTable)--unitType, events, frameName, position, originalTable)
+BuildBBFrame = function (config, originalTable)
     local bbElement = deepcopy(originalTable)
     bbElement["unitType"] = config.unitType
     bbElement["total"] = UnitHealthMax(config.unitType)

@@ -12,5 +12,4 @@ PetEventConsumer.Execute = function(self, event)
 
     PetHealth:Init()
     PetHealth.frame:SetScript("OnEvent", BBFrame_EventConsumer(PetHealth))
-    --PetHealth.frame:SetScale(0.8)
 end

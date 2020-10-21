@@ -19,20 +19,17 @@ function deepcopy(orig, copies)
     return copy
 end
 
-BuildBBFrame = function (unitType, events, frameName, position, originalTable)
+BuildBBFrame = function (config, originalTable)--unitType, events, frameName, position, originalTable)
     local bbElement = deepcopy(originalTable)
-    bbElement["unitType"] = unitType
-    bbElement["total"] = UnitHealthMax(unitType)
-    bbElement["current"] = UnitHealth(unitType)
-    bbElement["events"] = events
-    bbElement["frame"] = CreateFrame("Frame", frameName, UIParent, BackdropTemplateMixin and "BackdropTemplate")
-    bbElement["ListenTo"] = function(self)
-
-            for event, _ in pairs(self.events) do
-                self.frame:RegisterEvent(event)
-            end
-        end
-    bbElement["position"] = position
+    bbElement["unitType"] = config.unitType
+    bbElement["total"] = UnitHealthMax(config.unitType)
+    bbElement["current"] = UnitHealth(config.unitType)
+    bbElement["events"] = config.events
+    bbElement["frame"] = CreateFrame("Frame", config.frameName, UIParent, BackdropTemplateMixin and "BackdropTemplate")
+    bbElement["SubscribeTo"] = function(self) return BBFrame_EventSubscriber(self) end
+    bbElement["position"] = config.position
+    bbElement["fonts"] = config.fonts
+    bbElement["size"] = config.size
 
     return bbElement
 end

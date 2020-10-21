@@ -5,8 +5,14 @@
 
 lib/math.lua
 lib/string.lua
-lib/reducer.lua
-src/bbFrame.lua
-src/health.lua
-src/power.lua
+src/config/health/player.lua
+src/config/health/pet.lua
+src/config/power/player.lua
+src/events/subscriber/bbFrameSubscriber.lua
+src/events/consumer/bbFrameConsumer.lua
+src/events/consumer/petConsumer.lua
+src/events/consumer/playerConsumer.lua
+src/frames/bbFrame.lua
+src/frames/health.lua
+src/frames/power.lua
 main.lua

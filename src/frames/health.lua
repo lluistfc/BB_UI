@@ -40,21 +40,18 @@ BB_Health.Update = function(self)
 end
 
 BB_Health.Init = function(self)
-    self.frame:SetBackdrop({
-        --bgFile = "Interface/Tooltips/UI-Tooltip-Background", 
-    })
     self.frame:SetPoint(self.position.relativeTo, self.position.x, self.position.y)
-    self.frame:SetSize(200, 35)
+    self.frame:SetSize(self.size.width, self.size.height)
     
     self.frame.health = self.frame:CreateFontString(self.frame, "OVERLAY")
     self.frame.health:SetPoint("BOTTOMLEFT", 0, 5)
     self.frame.health:SetJustifyV("BOTTOM");
     self.frame.health:SetJustifyH("LEFT");
-    self.frame.health:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE")
+    self.frame.health:SetFont(self.fonts.healthFont.src, self.fonts.healthFont.size, "OUTLINE")
 
     self.frame.percent = self.frame:CreateFontString(self.frame, "OVERLAY")
     self.frame.percent:SetPoint("RIGHT", 2, -2)
-    self.frame.percent:SetFont("Fonts\\FRIZQT__.TTF", 35, "OUTLINE")
+    self.frame.percent:SetFont(self.fonts.healthPercentFont.src, self.fonts.healthPercentFont.size, "OUTLINE")
 
     local classColor = self:ClassColor()
     
@@ -64,5 +61,5 @@ BB_Health.Init = function(self)
     self.frame.underLine:SetEndPoint("BOTTOMRIGHT",0,0)
 
     self:Update()
-    self:ListenTo()
+    self:SubscribeTo()
 end

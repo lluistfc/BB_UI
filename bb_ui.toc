@@ -1,0 +1,12 @@
+## Interface: 90001
+## Title: BettyBoom_UI
+## Author: lluistfc
+## Version: 0.1
+
+lib/math.lua
+lib/string.lua
+lib/reducer.lua
+src/bbFrame.lua
+src/health.lua
+src/power.lua
+main.lua

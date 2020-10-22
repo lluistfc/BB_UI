@@ -1,7 +1,6 @@
 PlayerEventConsumer = {}
 
 PlayerEventConsumer.AllowedEvents = {
-    PLAYER_ALIVE = true,
     PLAYER_ENTERING_WORLD = true
 }
 
@@ -9,8 +8,11 @@ PlayerEventConsumer.Execute = function(self, event)
     
     if (self.AllowedEvents[event] == nil) then return end
 
-    local PlayerHealth = BuildBBFrame(PlayerHealthConfig, BB_Health)
-    local PlayerPower = BuildBBFrame(PlayerPowerConfig, BB_Power)
+    local healthConfig = BB_UI_Config[PlayerHealthConfig.unitType][PlayerHealthConfig.frameName] or PlayerHealthConfig
+    local powerConfig = BB_UI_Config[PlayerPowerConfig.unitType][PlayerPowerConfig.frameName] or PlayerPowerConfig
+
+    local PlayerHealth = BuildBBFrame(healthConfig, BB_Health)
+    local PlayerPower = BuildBBFrame(powerConfig, BB_Power)
 
     PlayerHealth:Init()
     PlayerPower:Init()

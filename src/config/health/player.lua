@@ -2,7 +2,8 @@ PlayerHealthConfig = {
     unitType = "player",
     events = {
         UNIT_HEALTH = true,
-        UNIT_MAXHEALTH = true
+        UNIT_MAXHEALTH = true,
+        PLAYER_LOGOUT = true
     },
     frameName = "PlayerHealth",
     position = { relativeTo = "LEFT", x = 650, y = 0 },

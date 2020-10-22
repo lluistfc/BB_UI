@@ -3,6 +3,10 @@
 ## Author: lluistfc
 ## Version: 0.1
 
+## SavedVariablesPerCharacter: BB_UI_Config
+
+lib/json.lua
+lib/table.lua
 lib/math.lua
 lib/string.lua
 src/config/health/player.lua

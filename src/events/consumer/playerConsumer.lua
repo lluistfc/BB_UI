@@ -11,11 +11,11 @@ PlayerEventConsumer.Execute = function(self, event)
     local healthConfig = BB_UI_Config[PlayerHealthConfig.unitType][PlayerHealthConfig.frameName] or PlayerHealthConfig
     local powerConfig = BB_UI_Config[PlayerPowerConfig.unitType][PlayerPowerConfig.frameName] or PlayerPowerConfig
 
-    local PlayerHealth = BuildBBFrame(healthConfig, BB_Health)
-    local PlayerPower = BuildBBFrame(powerConfig, BB_Power)
+    local PlayerHealth = table.inheritsFrom(BB_Health)
+    local PlayerPower = table.inheritsFrom(BB_Power)
 
-    PlayerHealth:Init()
-    PlayerPower:Init()
+    PlayerHealth:Init(healthConfig)
+    PlayerPower:Init(powerConfig)
 
     PlayerHealth.frame:SetScript("OnEvent", BBFrame_EventConsumer(PlayerHealth))
     PlayerPower.frame:SetScript("OnEvent", BBFrame_EventConsumer(PlayerPower))

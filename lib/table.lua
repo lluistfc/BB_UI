@@ -18,3 +18,33 @@ table.deepCopy = function (orig, copies)
     end
     return copy
 end
+
+table.inheritsFrom = function ( baseClass )
+
+    local new_class = {}
+    local class_mt = { __index = new_class }
+
+    function new_class:create()
+        local newinst = {}
+        setmetatable( newinst, class_mt )
+        return newinst
+    end
+
+    if nil ~= baseClass then
+        setmetatable( new_class, { __index = baseClass } )
+    end
+
+    -- Implementation of additional OO properties starts here --
+
+    -- Return the class object of the instance
+    function new_class:class()
+        return new_class
+    end
+
+    -- Return the super class object of the instance
+    function new_class:superClass()
+        return baseClass
+    end
+
+    return new_class
+end

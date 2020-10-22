@@ -1,4 +1,6 @@
-PetEventConsumer = {}
+PetEventConsumer = {
+    alreadyInitialized = false
+}
 
 PetEventConsumer.AllowedEvents = {
     UNIT_PET = true
@@ -10,8 +12,11 @@ PetEventConsumer.Execute = function(self, event)
 
     local config = BB_UI_Config[PetHealthConfig.unitType][PetHealthConfig.frameName] or PetHealthConfig
 
-    local PetHealth = BuildBBFrame(config, BB_Health)
+    if not self.alreadyInitialized then
+        local PetHealth = BuildBBFrame(config, BB_Health)
 
-    PetHealth:Init()
-    PetHealth.frame:SetScript("OnEvent", BBFrame_EventConsumer(PetHealth))
+        PetHealth:Init()
+        PetHealth.frame:SetScript("OnEvent", BBFrame_EventConsumer(PetHealth))
+        self.alreadyInitialized = true
+    end
 end

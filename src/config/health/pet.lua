@@ -3,7 +3,8 @@ PetHealthConfig = {
     events = {
         UNIT_HEALTH = true,
         UNIT_MAXHEALTH = true,
-        UNIT_PET = true
+        UNIT_PET = true,
+        PLAYER_LOGOUT = true
     },
     frameName = "PetHealth",
     position = { relativeTo = "LEFT", x = 675, y = -90 },

@@ -3,7 +3,8 @@ TargetInfoConfig = {
     events = {
         PLAYER_LOGOUT = true,
         PLAYER_TARGET_CHANGED = true,
-        UNIT_TARGET = true
+        UNIT_TARGET = true,
+        RAID_TARGET_UPDATE = true
     },
     frameName = "TargetInfo",
     position = { relativeTo = "LEFT", x = 850, y = 20 },

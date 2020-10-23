@@ -5,8 +5,7 @@ TargetHealthConfig = {
         UNIT_MAXHEALTH = true,
         PLAYER_LOGOUT = true,
         PLAYER_TARGET_CHANGED = true,
-        UNIT_TARGET = true,
-        RAID_TARGET_UPDATE = true
+        UNIT_TARGET = true
     },
     frameName = "TargetHealth",
     frameType = "Button",

@@ -1,6 +1,6 @@
-BB_Health = {}
+BB_Health = BB_Frame(nil)
 
-BB_Health.PercentColor = function(self, percent)
+function BB_Health:PercentColor(percent)
 
     if percent >= 75 then
         return { r = 0, g = 1, b = 0 }
@@ -11,19 +11,20 @@ BB_Health.PercentColor = function(self, percent)
     end  
 end
 
-BB_Health.ClassColor = function(self)
+function BB_Health:ClassColor()
 
     local _, class = UnitClass(self.unitType)
     return RAID_CLASS_COLORS[class] or { r = 0, g = 0, b = 0 }
 end
 
-BB_Health.Update = function(self)
+function BB_Health:Update()
+
     if not UnitExists(self.unitType) then
         self.frame:Hide()
-        self.frame:SetScript("OnEvent", nil)
         return
     end
-
+    self:PreUpdate()
+    self.frame:Show()
     self.total = UnitHealthMax(self.unitType) or 1
     self.current = UnitHealth(self.unitType) or 0
 
@@ -39,7 +40,11 @@ BB_Health.Update = function(self)
     self.frame.percent:SetTextColor(percentColor.r, percentColor.g, percentColor.b)
 end
 
-BB_Health.Init = function(self)
+function BB_Health:Init(frameConfig)
+
+    self:SetConfig(frameConfig)
+    self:CreateMainFrame(frameConfig.frameName)
+
     self.frame:SetPoint(self.position.relativeTo, self.position.x, self.position.y)
     self.frame:SetSize(self.size.width, self.size.height)
     

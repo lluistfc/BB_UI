@@ -10,4 +10,5 @@ TargetEventConsumer.Execute = function(self, event)
 
     TargetHealth:BuildElements()
     TargetPower:BuildElements()
+    TargetInfo:BuildElements()
 end

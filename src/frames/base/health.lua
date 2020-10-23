@@ -43,7 +43,7 @@ end
 function BB_Health:Init(frameConfig)
 
     self:SetConfig(frameConfig)
-    self:CreateMainFrame(frameConfig.frameName)
+    self:CreateMainFrame(frameConfig.frameName, frameConfig.frameType)
 
     self.frame:SetPoint(self.position.relativeTo, self.position.x, self.position.y)
     self.frame:SetSize(self.size.width, self.size.height)
@@ -64,6 +64,13 @@ function BB_Health:Init(frameConfig)
     self.frame.underLine:SetColorTexture(classColor.r, classColor.g, classColor.b, 1)
     self.frame.underLine:SetStartPoint("BOTTOMLEFT",0,0)
     self.frame.underLine:SetEndPoint("BOTTOMRIGHT",0,0)
+    
+    self.frame:RegisterForClicks('RightButtonUp')
+    self.frame:SetAttribute('unit', self.unitType)
+    -- Enable targeting unit with LEFT CLICK on it's frame
+    -- TODO: Will enable when the configuration panel is created, for now left click is used only to move arround the frames
+    --self.frame:SetAttribute('*type1', 'target')
+    self.frame:SetAttribute('*type2', 'togglemenu')
 
     self:Update()
     self:SubscribeTo()

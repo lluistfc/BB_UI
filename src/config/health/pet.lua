@@ -7,6 +7,7 @@ PetHealthConfig = {
         PLAYER_LOGOUT = true
     },
     frameName = "PetHealth",
+    frameType = "Button",
     position = { relativeTo = "LEFT", x = 675, y = -90 },
     size = {
         width = 175,

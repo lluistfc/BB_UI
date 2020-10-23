@@ -41,6 +41,7 @@ BB_Frame = function(baseClass)
 
     function new_class:SetConfig(frameConfig)
         new_class.unitType = frameConfig.unitType
+        new_class.frameType = frameConfig.frameType or "Frame"
         new_class.total = UnitHealthMax(frameConfig.unitType) or 1
         new_class.current = UnitHealth(frameConfig.unitType) or 0
         new_class.events = frameConfig.events
@@ -50,8 +51,8 @@ BB_Frame = function(baseClass)
         new_class.size = frameConfig.size
     end
 
-    function new_class:CreateMainFrame(frameName)
-        new_class.frame = CreateFrame("Frame", frameName, UIParent, BackdropTemplateMixin and "BackdropTemplate")
+    function new_class:CreateMainFrame(frameName, frameType)
+        new_class.frame = CreateFrame("Button", frameName, UIParent, 'SecureUnitButtonTemplate')
         new_class.frame:SetMovable(true)
         new_class.frame:EnableMouse(true)
         new_class.frame:RegisterForDrag("LeftButton")

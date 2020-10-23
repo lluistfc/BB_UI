@@ -14,6 +14,7 @@ src/config/health/pet.lua
 src/config/health/target.lua
 src/config/power/player.lua
 src/config/power/target.lua
+src/config/info/target.lua
 src/events/subscriber/bbFrameSubscriber.lua
 src/events/consumer/bbFrameConsumer.lua
 src/events/consumer/petConsumer.lua
@@ -27,4 +28,5 @@ src/frames/player/power.lua
 src/frames/pet/health.lua
 src/frames/target/health.lua
 src/frames/target/power.lua
+src/frames/target/info.lua
 main.lua

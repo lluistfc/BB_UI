@@ -6,6 +6,7 @@ PlayerHealthConfig = {
         PLAYER_LOGOUT = true
     },
     frameName = "PlayerHealth",
+    frameType = "Button",
     position = { relativeTo = "LEFT", x = 650, y = 0 },
     size = {
         width = 200,

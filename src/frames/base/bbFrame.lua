@@ -13,9 +13,7 @@ BB_Frame = function(baseClass)
         setmetatable( new_class, { __index = baseClass } )
     end
 
-    function new_class:class()
-        return new_class
-    end
+    function new_class:PreUpdate() end
 
     function new_class:SubscribeTo() return BBFrame_EventSubscriber(new_class) end
 

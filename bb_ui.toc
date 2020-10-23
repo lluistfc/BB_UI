@@ -22,4 +22,9 @@ src/events/consumer/targetConsumer.lua
 src/frames/base/bbFrame.lua
 src/frames/base/health.lua
 src/frames/base/power.lua
+src/frames/player/health.lua
+src/frames/player/power.lua
+src/frames/pet/health.lua
+src/frames/target/health.lua
+src/frames/target/power.lua
 main.lua

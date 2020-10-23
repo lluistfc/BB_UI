@@ -10,13 +10,8 @@ PetEventConsumer.Execute = function(self, event)
 
     if (self.AllowedEvents[event] == nil) then return end
 
-    local config = BB_UI_Config[PetHealthConfig.unitType][PetHealthConfig.frameName] or PetHealthConfig
-
     if not self.alreadyInitialized then
-        local PetHealth = BuildBBFrame(config, BB_Health)
-
-        PetHealth:Init()
-        PetHealth.frame:SetScript("OnEvent", BBFrame_EventConsumer(PetHealth))
+        PetHealth:BuildElements()
         self.alreadyInitialized = true
     end
 end

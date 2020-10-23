@@ -2,7 +2,7 @@ local BB_UI = CreateFrame("Frame");
 local EventConsumers = {}
 
 EventConsumers["player"] = PlayerEventConsumer
---EventConsumers["pet"] = PetEventConsumer
+EventConsumers["pet"] = PetEventConsumer
 EventConsumers["target"] = TargetEventConsumer
 
 BB_UI:SetScript("OnEvent", function(self, event, arg1)

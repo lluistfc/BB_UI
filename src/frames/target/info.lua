@@ -1,6 +1,31 @@
 TargetInfo = BB_Frame(nil)
 
+local TARGET_INFO_LEVEL_PREFIX = "   -   LVL "
+
+local TARGET_CLASSIFICATION_RARE = "    >> RARE <<"
+local TARGET_CLASSIFICATION_BOSS = "    >> BOSS <<"
+local TARGET_CLASSIFICATION_ELITE = "    >> ELITE <<"
+
+local TARGET_INFO_MOB_CLASSIFICATION = {
+    ["rare"] = TARGET_CLASSIFICATION_RARE,
+    ["rareelite"] = TARGET_CLASSIFICATION_RARE,
+    ["worldboss"] = TARGET_CLASSIFICATION_BOSS,
+    ["elite"] = TARGET_CLASSIFICATION_ELITE
+}
+
+function TargetInfo:GetLevel()
+
+    local level = UnitLevel(self.unitType)
+
+    if (level == -1) then
+        level = CreateTextureMarkup("Interface\\TargetingFrame\\UI-RaidTargetingIcon_8", 64, 64, 16, 16, 0, 1, 0, 1)
+    end
+
+    return TARGET_INFO_LEVEL_PREFIX .. level
+end
+
 function TargetInfo:SetConfig(frameConfig)
+
     self.unitType = frameConfig.unitType
     self.events = frameConfig.events
     
@@ -9,45 +34,46 @@ function TargetInfo:SetConfig(frameConfig)
     self.size = frameConfig.size
 end
 
-function TargetInfo:Update()
-    if not UnitExists(self.unitType) then
-        self.frame:Hide()
-        return
-    end
-    
-    local info = ""
-    local name, _ = UnitName(self.unitType)
-    local level = UnitLevel(self.unitType)
+function TargetInfo:UpdateRaidMarker()
+
     local marker = GetRaidTargetIndex(self.unitType)
-    local classification = UnitClassification(self.unitType);
-
-    info = info .. name
-
-    if (level == -1) then
-        info = info .. "   -   LVL "..CreateTextureMarkup("Interface\\TargetingFrame\\UI-RaidTargetingIcon_8", 64, 64, 16, 16, 0, 1, 0, 1)
-    else
-        info = info .. "   -   LVL "..level
-    end
-
-    if (classification == "worldboss") then
-        info = info .. "    >> BOSS <<"
-    elseif (classification == "rare" or classification == "rareelite") then
-        info = info .. "    >> RARE <<"
-    elseif classification == "elite" then
-        info = info .. "    >> ELITE <<"
-    end
 
     if (marker ~= nil) then
         self.frame.raidMarker:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_"..marker)
     else
         self.frame.raidMarker:SetTexture(nil)
     end
+end
 
-    self.frame.unitInfo:SetText(info)
+function TargetInfo:GetUnitClassification()
+
+    local classification = UnitClassification(self.unitType);
+
+    return TARGET_INFO_MOB_CLASSIFICATION[classification] or ""
+end
+
+function TargetInfo:UpdateUnitInfo()
+
+    local name, _ = UnitName(self.unitType)
+
+    self.frame.unitInfo:SetText(name .. self:GetLevel() .. self:GetUnitClassification())
+end
+
+function TargetInfo:Update()
+
+    if not UnitExists(self.unitType) then
+        self.frame:Hide()
+        return
+    end
+    
+    self:UpdateUnitInfo()
+    self:UpdateRaidMarker()
+
     self.frame:Show()
 end
 
 function TargetInfo:Init(frameConfig)
+    
     self:SetConfig(frameConfig)
     self:CreateMainFrame(frameConfig.frameName)
 

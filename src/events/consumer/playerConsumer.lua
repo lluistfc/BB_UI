@@ -1,4 +1,6 @@
-PlayerEventConsumer = {}
+PlayerEventConsumer = {
+    alreadyInitialized = false
+}
 
 PlayerEventConsumer.AllowedEvents = {
     PLAYER_ENTERING_WORLD = true
@@ -6,8 +8,9 @@ PlayerEventConsumer.AllowedEvents = {
 
 PlayerEventConsumer.Execute = function(self, event)
     
-    if (self.AllowedEvents[event] == nil) then return end
+    if (self.AllowedEvents[event] == nil or self.alreadyInitialized == true) then return end
     
     PlayerHealth:BuildElements()
     PlayerPower:BuildElements()
+    self.alreadyInitialized = true
 end
